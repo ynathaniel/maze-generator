@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Welcome to Maze Generator"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:textSize="32dp"
+        android:id="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="by Yoav Nathaniel"
+        android:paddingLeft="20dp"
+        android:paddingTop="5dp"
+        android:textSize="26dp"
+        android:id="@+id/textView2" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:id="@+id/spinnerLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Grid Dimensions:"
+            android:textSize="20dip"/>
+        <Spinner
+            android:id="@+id/planets_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        </LinearLayout>
+    <!--<RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingTop="13dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6x6"
+            android:onClick="radioClick"
+            android:id="@+id/rb6"
+            android:checked="true"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7x7"
+            android:onClick="radioClick"
+            android:id="@+id/rb7"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8x8"
+            android:onClick="radioClick"
+            android:id="@+id/rb8"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9x9"
+            android:onClick="radioClick"
+            android:id="@+id/rb9"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10x10"
+            android:onClick="radioClick"
+            android:id="@+id/rb10"/>
+        </RadioGroup>-->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Click RANDOM EXPLORE to see a map get generated step by step. However, there is no guarantee the map with reach the end point"
+        android:padding="15dp"
+        android:textSize="20dp"
+        android:id="@+id/textView3" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="RANDOM EXPLORE with LinearLayout"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/button1"
+        android:onClick="choice"/>
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="RANDOM EXPLORE with BitMap"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/button4"
+        android:onClick="bitmap"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Click COMPLETE MAZE for the complete maze."
+        android:padding="15dp"
+        android:textSize="20dp"
+        android:id="@+id/textView4" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="COMPLETE MAZE with LinearLayout"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/button2"
+        android:onClick="choice"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="COMPLETE MAZE with BitMap"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/button3"
+        android:onClick="bitmap"/>
+
+</LinearLayout>

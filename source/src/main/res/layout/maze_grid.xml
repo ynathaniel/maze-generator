@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/pageLayout">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingTop="100dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="25dp"
+            android:id="@+id/nextMoveButton"
+            android:text="Next Move"
+            android:layout_gravity="center"
+/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Steps = 0"
+            android:textColor="#000000"
+            android:textSize="40dp"
+            android:layout_marginTop="20dp"
+            android:editable="false"
+            android:id="@+id/stepCount" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="25dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/resetButton"
+            android:text="Reset Maze"
+            android:layout_gravity="center" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
