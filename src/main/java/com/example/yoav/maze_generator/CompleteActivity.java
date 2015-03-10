@@ -70,30 +70,34 @@ public class CompleteActivity extends ActionBarActivity {
 
                 if (version == 1) {
                     //prepares the pop up alert message
-                    if (grid.getCellStack().isEmpty() && !grid.getGoalCell().getVisited()) {
-                        AlertDialog.Builder alertBox = new AlertDialog.Builder(context);
-                        alertBox.setTitle("Alert! No More Moves!");
-                        alertBox.setMessage("Maze finished building but the end point has not " +
-                                "been reached.");
-                        alertBox.setCancelable(false);
-                        alertBox.setPositiveButton("Try Maze Again", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                grid.resetGrid();
-                                drawItAll(grid, mapDrawer);
-                                counterText.setText("Steps = " + grid.getSteps());
-                            }
-                        });
-                        alertBox.setNegativeButton("I Don't Care", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                        alertBox.create();
-                        alertBox.show();
+                    if (grid.getCellStack().isEmpty()){
+                        if (!grid.getGoalCell().getVisited()) {
+                            AlertDialog.Builder alertBox = new AlertDialog.Builder(context);
+                            alertBox.setTitle("Alert! No More Moves!");
+                            alertBox.setMessage("Maze finished building but the end point has not " +
+                                    "been reached.");
+                            alertBox.setCancelable(false);
+                            alertBox.setPositiveButton("Try Maze Again", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    grid.resetGrid();
+                                    drawItAll(grid, mapDrawer);
+                                    counterText.setText("Steps = " + grid.getSteps());
+                                }
+                            });
+                            alertBox.setNegativeButton("I Don't Care", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                            alertBox.create();
+                            alertBox.show();
+                        }
                     }
-                    gridExplore(grid, mapDrawer);
+                    else {
+                        gridExplore(grid, mapDrawer);
+                    }
                 }
                 if (version == 2) {
                     //reset grid, reset screen, find complete maze
@@ -151,6 +155,12 @@ public class CompleteActivity extends ActionBarActivity {
                 }
             }
         }
+        int startY = grid.getStartCell().getyCoord();
+        int startX = grid.getStartCell().getxCoord();
+        mapDrawer.getMapRowAt(startY).getMapBoxAt(startX).getDrawBox().setBackgroundColor(0xFF06C709);
+        int endY = grid.getGoalCell().getyCoord();
+        int endX = grid.getGoalCell().getxCoord();
+        mapDrawer.getMapRowAt(endY).getMapBoxAt(endX).getDrawBox().setBackgroundColor(0xFFDFE12C);
     }
 
     //Takes Grid and MapDrawer as parameters.
@@ -198,12 +208,6 @@ public class CompleteActivity extends ActionBarActivity {
             gridExplore(grid, mapDrawer);
             areaHas++;
         }
-        int startY = grid.getStartCell().getyCoord();
-        int startX = grid.getStartCell().getxCoord();
-        mapDrawer.getMapRowAt(startY).getMapBoxAt(startX).getDrawBox().setBackgroundColor(0xFF06C709);
-        int endY = grid.getGoalCell().getyCoord();
-        int endX = grid.getGoalCell().getxCoord();
-        mapDrawer.getMapRowAt(endY).getMapBoxAt(endX).getDrawBox().setBackgroundColor(0xFFDFE12C);
         int area = grid.dimens / 2;
         area = area * area;
         int areaNeeded = area;

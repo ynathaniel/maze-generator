@@ -43,7 +43,10 @@ public class Grid {
                 cells[i][o].setCoords(i, o);
             }
         }
-        int center = ((dimens - 1) / 2) - 1;
+        int center = ((dimens - 1) / 2);
+        if (center%2 == 1){
+            center--;
+        }
         current = cells[0][center];
         startCell = cells[0][center];
         goalCell = cells[dimens - 1][center];
@@ -68,7 +71,10 @@ public class Grid {
                 cells[i][o].setCoords(i, o);
             }
         }
-        int center = ((dimens - 1) / 2) - 1;
+        int center = ((dimens - 1) / 2);
+        if (center%2 == 1){
+            center--;
+        }
         current = cells[0][center];
         startCell = cells[0][center];
         goalCell = cells[dimens - 1][center];

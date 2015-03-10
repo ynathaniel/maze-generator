@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
         final LinearLayout page = drawInterface(imageScreen, canvas, bitmap);
         final Context context = this;
         final Grid grid = new Grid(d);
-
+        markCells(grid, context, canvas);
         Button nextButton = (Button) findViewById(R.id.nextMoveButton);
         Button resetButton = (Button) findViewById(R.id.resetButton);
         final TextView stepsText = (TextView) findViewById(R.id.stepCount);
@@ -64,6 +64,7 @@ public class MainActivity extends ActionBarActivity {
                 canvas.drawColor(0xFFFFFFFF);
                 bitmapSurround(canvas);
                 stepsText.setText("Steps = " + grid.getSteps());
+                markCells(grid, context, canvas);
             }
         });
 
@@ -86,6 +87,7 @@ public class MainActivity extends ActionBarActivity {
                                 canvas.drawColor(0xFFFFFFFF);
                                 bitmapSurround(canvas);
                                 stepsText.setText("Steps = " + grid.getSteps());
+                                markCells(grid, context, canvas);
                             }
                         });
                         alertBox.setNegativeButton("I Don't Care", new DialogInterface.OnClickListener() {
@@ -97,10 +99,12 @@ public class MainActivity extends ActionBarActivity {
                         alertBox.create();
                         alertBox.show();
                     }
-                    clickExperiment(grid, canvas, context, imageScreen);
-                    //removes imageScreen and adds it again with an updated version.
-                    page.removeView(imageScreen);
-                    page.addView(imageScreen);
+                    else {
+                        clickExperiment(grid, canvas, context, imageScreen);
+                        //removes imageScreen and adds it again with an updated version.
+                        page.removeView(imageScreen);
+                        page.addView(imageScreen);
+                    }
                 }
 
                 if (version == 1) {
@@ -113,6 +117,25 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    //mark end and start cells
+    public void markCells(Grid grid, Context context, Canvas canvas){
+        int actualGrid = (grid.dimens + 1) / 2;
+        int sizeUse = 1000 / actualGrid;
+        int startX = grid.getStartCell().getxCoord();
+        int startY = grid.getStartCell().getyCoord();
+        DrawCell drawStartCell = new DrawCell(context,
+                ((startX / 2) * sizeUse) + (sizeUse / 4),
+                ((startY / 2) * sizeUse) + (sizeUse / 4), (sizeUse / 2),
+                (sizeUse / 2));
+        drawStartCell.onDraw(canvas);
+        int endX = grid.getGoalCell().getxCoord();
+        int endY = grid.getGoalCell().getyCoord();
+        DrawCell drawGoalCell = new DrawCell(context,
+                ((endX / 2) * sizeUse) + (sizeUse / 4),
+                ((endY / 2) * sizeUse) + (sizeUse / 4), (sizeUse / 2),
+                (sizeUse / 2));
+        drawGoalCell.onDraw(canvas);
+    }
     //Takes Grid, Canvas, Context, and ImageScreen as parameters
     //Calls explore() in Grid. Draws the walls around the current cell.
     public void clickExperiment(Grid grid, Canvas canvas, Context context, ImageScreen imageView) {
@@ -167,18 +190,7 @@ public class MainActivity extends ActionBarActivity {
             nextClick(grid, canvas, context, imageView);
             return;
         }
-        int actualGrid = (grid.dimens + 1) / 2;
-        int sizeUse = 1000 / actualGrid;
-        int startX = grid.getStartCell().getxCoord();
-        int startY = grid.getStartCell().getyCoord();
-        DrawCell drawStartCell = new DrawCell(context, ((startX / 2) * sizeUse) + (sizeUse / 4),
-                ((startY / 2) * sizeUse) + (sizeUse / 4), (sizeUse / 2), (sizeUse / 2));
-        drawStartCell.onDraw(canvas);
-        int endX = grid.getGoalCell().getxCoord();
-        int endY = grid.getGoalCell().getyCoord();
-        DrawCell drawGoalCell = new DrawCell(context, ((endX / 2) * sizeUse) + (sizeUse / 4),
-                ((endY / 2) * sizeUse) + (sizeUse / 4), (sizeUse / 2), (sizeUse / 2));
-        drawGoalCell.onDraw(canvas);
+        markCells(grid, context, canvas);
 
 
     }
@@ -212,6 +224,7 @@ public class MainActivity extends ActionBarActivity {
         canvas.drawRect(0, 0, 5, 1000, black);
         canvas.drawRect(0, 995, 1000, 1000, black);
         canvas.drawRect(995, 0, 1000, 1000, black);
+
     }
 
     @Override
